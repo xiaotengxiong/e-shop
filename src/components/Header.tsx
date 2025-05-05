@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Title, MenuList } from "@/lib/constants";
 import { Fragment } from "react";
-export default async function Header() {
+import { useCartStore } from "@/store";
+export default function Header() {
+  const { cartList } = useCartStore();
   return (
     <>
       <div className="h-16 border-b px-10 bg-white">
@@ -19,6 +22,7 @@ export default async function Header() {
                 </div>
               </Fragment>
             ))}
+            {cartList.length ? `(${cartList.length})` : ""}
           </div>
         </div>
       </div>

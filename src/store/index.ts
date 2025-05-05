@@ -1,6 +1,8 @@
 import useSideStore from "./sideStore";
+import useCartStore from "./cartStore";
 
 
 export {
-    useSideStore
+    useSideStore,
+    useCartStore
 }

@@ -1,4 +1,4 @@
-export const Title = 'E-SHOP | xiaotx'
+export const Title = 'E-SHOP'
 export const MenuList = [
     {href: '/search', text:'Search'},
     {href: '/account', text:'Account'},
