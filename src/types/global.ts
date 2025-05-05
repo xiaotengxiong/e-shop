@@ -15,3 +15,10 @@ export type ProductAction = {
     data: Product[]
 }
 
+export type ProductDetailAction = {
+    status: number,
+    body: string,
+    data: Product
+}
+
+

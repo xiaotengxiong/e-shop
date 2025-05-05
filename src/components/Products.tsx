@@ -2,8 +2,10 @@
 import { Product } from "@/types/global";
 import Image from "next/image";
 import { useSideStore } from "@/store";
+import { useRouter } from "next/navigation";
 
 export default function Products({ data }: { data: Product[] }) {
+  const router = useRouter()
   const { value } = useSideStore();
   const products = [...data];
 
@@ -11,6 +13,10 @@ export default function Products({ data }: { data: Product[] }) {
     products.sort((a, b) =>
       value === "low" ? a.price - b.price : b.price - a.price
     );
+  }
+
+  const handleClick = (id: number) => {
+    router.push(`/detail/${id}`)
   }
 
   return (
@@ -21,6 +27,7 @@ export default function Products({ data }: { data: Product[] }) {
           <div
             key={product.id}
             className="bg-slate-50 p-4 rounded-lg shadow-md hover:bg-slate-200 transition duration-300 ease-in-out cursor-pointer"
+            onClick={() => handleClick(product.id)}
           >
             <Image
               src={product.image}
