@@ -1,0 +1,1 @@
+export type SideValue = 'latest' | 'low' | 'hight'
