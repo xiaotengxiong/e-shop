@@ -1,1 +1,17 @@
 export type SideValue = 'latest' | 'low' | 'hight'
+
+export type Product = {
+    id: number,
+    name: string,
+    price: number,
+    description: string,
+    image: string,
+    variant: string[]
+}
+
+export type ProductAction = {
+    status: number,
+    body: string,
+    data: Product[]
+}
+

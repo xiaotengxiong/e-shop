@@ -3,15 +3,19 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { SideValue } from "@/types/global";
 import { SideMenusList } from "@/lib/constants";
+import { useSideStore } from "@/store";
 
 export default function Side() {
+  const { setValue } = useSideStore();
   const handleValueChange = (value: SideValue) => {
     console.log("value--", value);
+    // 设置状态值
+    setValue(value);
   };
 
   return (
     <div className="w-64 py-4">
-      {SideMenusList.map((item, i) => ( 
+      {SideMenusList.map((item, i) => (
         <div key={i}>
           <p className="m-5 text-xl">{item.title}</p>
           <ToggleGroup
