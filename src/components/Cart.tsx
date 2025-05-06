@@ -88,7 +88,7 @@ export default function Cart() {
                         ></Trash2>
                         <Select
                           value={String(cartItem.quantity)}
-                          onValueChange={(value) => handleValueChange(value, i)}
+                          onValueChange={(value: string) => handleValueChange(value, i)}
                         >
                           <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Theme" />
