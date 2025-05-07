@@ -27,3 +27,5 @@ export type CartItem = {
     selectedVariant: string,
 }
 
+export type NoteAccountType = 'login' | 'register'
+
