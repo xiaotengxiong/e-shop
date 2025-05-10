@@ -87,7 +87,7 @@ export const authAction = async () => {
     } catch (error) {
         return {
             status: 401,
-            body: 'auth failed'
+            body: `auth failed ${error}`
         }
     }
 }
