@@ -15,11 +15,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
+import { registeAction } from "@/actions/users";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email({ message: "请输入邮箱" }),
-  name: z.string().min(2, { message: "最少两个字符" }).max(8, { message: '最多8个字符' }),
-  password: z.string().min(6, {message: '最小六个字符'}),
+  name: z
+    .string()
+    .min(2, { message: "最少两个字符" })
+    .max(8, { message: "最多8个字符" }),
+  password: z.string().min(6, { message: "最小六个字符" }),
 });
 
 export default function Login({
@@ -32,13 +37,17 @@ export default function Login({
     defaultValues: {
       email: "",
       password: "",
-      name: ""
+      name: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await registeAction(values.email, values.name, values.password);
+    if (res.status === 200) {
+      toast.success(res.body);
+      setNotAccountType('login')
+    } else {
+      toast.error(res.body);
+    }
   }
 
   return (
@@ -50,7 +59,7 @@ export default function Login({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+          <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
